@@ -2,6 +2,64 @@
 
 **CareerWise AI** is an intelligent career mentoring tool designed to analyze student resumes and GitHub profiles, providing personalized career guidance using the advanced Ollama LLM. It helps students gain insights into their strengths and areas for improvement, making informed decisions about their career paths.
 
+## 🎯 Project Overview
+
+CareerWise AI bridges the gap between academic learning and industry requirements by providing data-driven career insights. The application combines resume analysis, GitHub profile evaluation, and AI-powered recommendations to help students:
+
+- **Identify skill gaps** in their current profile
+- **Discover relevant learning resources** tailored to their background
+- **Explore suitable job roles** based on their skills and interests
+- **Receive actionable project ideas** to enhance their portfolio
+- **Track progress** through automated weekly reports
+
+### 🏗️ System Architecture
+
+The application follows a modular architecture with clear separation of concerns:
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Streamlit UI  │    │  Resume Parser  │    │ GitHub Analyzer │
+│                 │────┤                 │    │                 │
+│  - File Upload  │    │  - PDF Extract  │    │  - API Calls    │
+│  - User Input   │    │  - Text Parse   │    │  - Repo Analysis│
+│  - Results View │    │  - Skill Extract│    │  - Lang Detection│
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                        │                        │
+         └────────────────────────┼────────────────────────┘
+                                  │
+                   ┌─────────────────┐    ┌─────────────────┐
+                   │  Mentor Brain   │    │     Emailer     │
+                   │                 │    │                 │
+                   │  - Ollama LLM   │    │  - SMTP Client  │
+                   │  - Prompt Eng   │    │  - HTML Reports │
+                   │  - Response Gen │    │  - Schedule Send│
+                   └─────────────────┘    └─────────────────┘
+```
+
+### 🔄 Application Workflow
+
+The application follows a comprehensive analysis workflow:
+
+1. **Data Collection Phase**
+   - User uploads PDF resume
+   - User provides GitHub username
+   - System validates inputs
+
+2. **Analysis Phase**
+   - Resume parsing extracts structured data
+   - GitHub API fetches repository information
+   - Data validation and error handling
+
+3. **Intelligence Phase**
+   - Ollama LLM processes combined data
+   - Generates personalized recommendations
+   - Formats output for presentation
+
+4. **Delivery Phase**
+   - Real-time results displayed in UI
+   - Optional email report generation
+   - Progress tracking and analytics
+
 ---
 
 ## Installation and Setup
