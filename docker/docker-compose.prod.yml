@@ -6,7 +6,7 @@ services:
     container_name: careerwise_app
     ports:
       - "8501:8501"
-    env_file: .env
+    env_file: ../.env
     depends_on:
       - ollama
     restart: unless-stopped

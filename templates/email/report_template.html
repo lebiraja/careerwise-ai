@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerWise AI Weekly Report</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            color: #333; 
+            background-color: #f5f5f5; 
+        }
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+            background-color: white; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1f77b4, #1565c0);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        h2 { 
+            color: #1f77b4; 
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #1f77b4;
+        }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1f77b4;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        ul { 
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f8f9fa;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #28a745;
+            position: relative;
+        }
+        li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: -10px;
+            top: 15px;
+            background-color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #1f77b4;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 CareerWise AI</h1>
+            <p>Your Weekly Career Development Report</p>
+        </div>
+        
+        <div class="content">
+            <h2>📊 GitHub Activity Summary</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">{repo_count}</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">{total_stars}</div>
+                    <div class="stat-label">Total Stars</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">{commit_frequency}</div>
+                    <div class="stat-label">Commits/Repo</div>
+                </div>
+            </div>
+
+            <p><strong>🔧 Programming Languages:</strong> {languages}</p>
+
+            <h2>💡 This Week's Recommendations</h2>
+            <ul>
+                <li><strong>Learning Focus:</strong> Try exploring FastAPI for backend development - it's trending and highly sought after by employers!</li>
+                <li><strong>Portfolio Boost:</strong> Improve your README files to increase project visibility and showcase your work professionally.</li>
+                <li><strong>Skill Development:</strong> Consider adding unit tests to your projects to demonstrate code quality awareness.</li>
+                <li><strong>Community Engagement:</strong> Contribute to open-source projects in your field to build connections and experience.</li>
+            </ul>
+
+            <div style="text-align: center;">
+                <a href="http://localhost:8501" class="cta-button">📈 Analyze My Profile Again</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Generated by CareerWise AI • Helping students build successful tech careers</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">
+                This report was automatically generated based on your GitHub activity. 
+                Keep coding and stay curious! 🎯
+            </p>
+        </div>
+    </div>
+</body>
+</html>
