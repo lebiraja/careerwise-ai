@@ -11,7 +11,9 @@ def send_email_report(email_address: str, github_data: Dict[str, Any]) -> bool:
     """
     try:
         # Load email template
-        with open("templates/report_template.html") as f:
+        from pathlib import Path
+        template_path = Path(__file__).parent.parent.parent / "templates" / "email" / "report_template.html"
+        with open(template_path) as f:
             template = f.read()
 
         # Prepare email content

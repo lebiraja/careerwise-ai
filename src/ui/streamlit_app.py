@@ -1,16 +1,26 @@
 import streamlit as st
-from resume_parser import parse_resume
-from github_analyzer import analyze_github
-from mentor_brain import get_mentor_advice
-from emailer import send_email_report
 import os
+from pathlib import Path
+
+# Add the src directory to the Python path
+import sys
+src_path = Path(__file__).parent.parent
+sys.path.insert(0, str(src_path))
+
+from core.resume_parser import parse_resume
+from core.github_analyzer import analyze_github
+from core.mentor_brain import get_mentor_advice
+from core.emailer import send_email_report
+from utils.config import Config
 
 # Set page config
 st.set_page_config(page_title="CareerWise AI", layout="wide")
 
 # Load custom CSS
-with open("static/style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+css_path = Config.STATIC_DIR / "css" / "style.css"
+if css_path.exists():
+    with open(css_path) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Title and header
 st.title("CareerWise AI")

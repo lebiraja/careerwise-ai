@@ -1,57 +1,52 @@
-CareerWise AI
-An intelligent career mentor AI that analyzes student resumes and GitHub profiles to provide personalized career guidance using Ollama LLM.
-Setup
+# CareerWise AI
 
-Clone the repository:
-git clone https://github.com/your-repo/careerwise-ai.git
-cd careerwise-ai
+An intelligent career mentoring tool that analyzes student resumes and GitHub profiles to provide personalized career guidance using Ollama LLM.
 
+## Quick Start
 
-Install dependencies:
-pip install -r requirements.txt
+1. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
+2. **Configure Environment**
+   ```bash
+   cp config/.env.example .env
+   # Edit .env with your credentials
+   ```
 
-Install and start Ollama:
-# Install Ollama (follow https://ollama.ai)
-ollama pull mistral
-ollama serve
+3. **Run Application**
+   ```bash
+   python main.py
+   ```
 
+4. **Access Application**
+   Open `http://localhost:8501` in your browser
 
-Set environment variables in a .env file:
-GITHUB_TOKEN=your_github_personal_access_token
-EMAIL_ADDRESS=your_email@gmail.com
-EMAIL_PASSWORD=your_app_specific_password
+## Documentation
 
+For detailed documentation, installation guides, and project structure, see:
+📚 [**Full Documentation**](docs/README.md)
 
-Run the app:
-streamlit run app.py
+## Project Structure
 
+```
+📁 src/           # Source code (core logic, UI, utilities)
+📁 docker/        # Docker configuration files
+📁 scripts/      # Setup and deployment scripts
+📁 static/       # CSS and other static assets
+📁 templates/    # Email templates
+📁 config/       # Configuration files
+📁 docs/         # Detailed documentation
+```
 
+## Features
 
-Features
+- 📄 **Resume Analysis** - Extract skills, education, and experience from PDFs
+- 🐙 **GitHub Integration** - Analyze repositories and coding activity
+- 🤖 **AI Mentoring** - Get personalized career advice using Ollama LLM
+- 📧 **Progress Reports** - Receive weekly email summaries
 
-Resume Parsing: Extracts name, skills, and education from PDF resumes.
-GitHub Analysis: Analyzes public repos, languages, stars, and activity.
-Mentor Advice: Provides learning resources, job roles, and project ideas via Ollama LLM.
-Weekly Email: Sends a summarized progress report.
+## Support
 
-Folder Structure
-
-app.py: Main Streamlit application.
-resume_parser.py: PDF resume parsing logic.
-github_analyzer.py: GitHub API analysis.
-mentor_brain.py: Ollama LLM recommendation logic.
-emailer.py: Email sending module.
-templates/report_template.html: HTML email template.
-static/style.css: Custom CSS for Streamlit UI.
-requirements.txt: Python dependencies.
-README.md: Project documentation.
-
-Notes
-
-Ensure Ollama is running (ollama serve) with the mistral model pulled.
-Email requires a Gmail app-specific password (generate in Google Account settings).
-GitHub token enhances API rate limits (generate in GitHub > Settings > Developer settings).
-Test with a sample PDF resume and a public GitHub username (e.g., octocat).
-
- 
+For questions or issues, please check the [documentation](docs/README.md) or open an issue.
