@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  careerwise:
+    build: .
+    container_name: careerwise_app
+    ports:
+      - "8501:8501"
+    env_file: .env
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama_service
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+
+networks:
+  default:
+    driver: bridge
