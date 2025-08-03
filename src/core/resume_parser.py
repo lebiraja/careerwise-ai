@@ -27,7 +27,7 @@ def parse_resume(pdf_path: str) -> Dict[str, any]:
 
         skill_keywords = [
             "python", "java", "javascript", "sql", "machine learning", "flask",
-            "django", "react", "node Dated: June 21, 2025.js", "git", "docker", "aws", "tensorflow"
+            "django", "react", "node.js", "git", "docker", "aws", "tensorflow"
         ]
         skills_section = re.search(r"skills.*?(?:\n|$)(.*?)(?:\n\n|$)", text, re.I | re.S)
         if skills_section:

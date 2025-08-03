@@ -36,6 +36,13 @@ ENV/
 env.bak/
 venv.bak/
 
+# Node modules
+node_modules/
+
+# Next.js
+.next/
+out/
+
 # IDE files
 .vscode/
 .idea/
