@@ -1,6 +1,6 @@
 # CareerWise AI
 
-An intelligent career mentoring tool that analyzes student resumes and GitHub profiles to provide personalized career guidance using Ollama LLM.
+🚀 **Streamlit Application** - An intelligent career mentoring tool that analyzes student resumes and GitHub profiles to provide personalized career guidance using Ollama LLM.
 
 ## Quick Start
 
@@ -33,11 +33,9 @@ For detailed documentation, installation guides, and project structure, see:
 ```
 📁 src/           # Source code (core logic, UI, utilities)
 📁 docker/        # Docker configuration files
-📁 scripts/      # Setup and deployment scripts
-📁 static/       # CSS and other static assets
-📁 templates/    # Email templates
-📁 config/       # Configuration files
-📁 docs/         # Detailed documentation
+📁 scripts/       # Setup and deployment scripts
+📁 config/        # Configuration files
+📁 docs/          # Detailed documentation
 ```
 
 ## Features
@@ -46,6 +44,17 @@ For detailed documentation, installation guides, and project structure, see:
 - 🐙 **GitHub Integration** - Analyze repositories and coding activity
 - 🤖 **AI Mentoring** - Get personalized career advice using Ollama LLM
 - 📧 **Progress Reports** - Receive weekly email summaries
+
+## Docker Deployment
+
+```bash
+# Development
+cd docker/
+docker-compose up --build
+
+# Production
+docker-compose -f docker-compose.prod.yml up --build
+```
 
 ## Support
 
