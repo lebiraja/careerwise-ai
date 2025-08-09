@@ -1,0 +1,64 @@
+services:
+  careerwise-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: careerwise_fullstack
+    ports:
+      - "3000:3000"    # Next.js frontend
+      - "8000:8000"    # FastAPI backend
+      - "8501:8501"    # Streamlit (if needed)
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - PYTHONPATH=/app/src
+      - PYTHONUNBUFFERED=1
+      - OLLAMA_BASE_URL=http://ollama:11434
+    env_file:
+      - .env
+    depends_on:
+      - ollama
+    volumes:
+      - ./temp:/app/temp
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - careerwise-network
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama_service
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - careerwise-network
+
+  # Optional: Redis for caching (if needed in the future)
+  redis:
+    image: redis:7-alpine
+    container_name: careerwise_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - careerwise-network
+    profiles:
+      - with-redis
+
+volumes:
+  ollama_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  careerwise-network:
+    driver: bridge

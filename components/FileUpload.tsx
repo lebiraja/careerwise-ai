@@ -25,6 +25,8 @@ export default function FileUpload({ onFileSelect, acceptedTypes }: FileUploadPr
     multiple: false,
   });
 
+  const { onClick, onKeyDown, onFocus, onBlur, onDragEnter, onDragLeave, onDragOver, onDrop: onDropHandler, ...rootProps } = getRootProps();
+
   const removeFile = () => {
     setSelectedFile(null);
     onFileSelect(null as any);
@@ -34,7 +36,16 @@ export default function FileUpload({ onFileSelect, acceptedTypes }: FileUploadPr
     <div className="space-y-3">
       {!selectedFile ? (
         <motion.div
-          {...getRootProps()}
+          onClick={onClick}
+          onKeyDown={onKeyDown}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onDragEnter={onDragEnter}
+          onDragLeave={onDragLeave}
+          onDragOver={onDragOver}
+          onDrop={onDropHandler}
+          tabIndex={rootProps.tabIndex}
+          role={rootProps.role}
           className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors duration-200 ${
             isDragActive
               ? 'border-primary-500 bg-primary-50'

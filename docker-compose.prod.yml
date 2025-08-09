@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  careerwise-ai:
+    image: ${DOCKER_IMAGE:-careerwise-ai:latest}
+    container_name: careerwise_prod
+    ports:
+      - "80:3000"      # Frontend on standard HTTP port
+      - "8000:8000"    # API backend
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=${API_URL:-http://localhost:8000}
+      - PYTHONPATH=/app/src
+      - PYTHONUNBUFFERED=1
+      - OLLAMA_BASE_URL=http://ollama:11434
+    env_file:
+      - .env.production
+    depends_on:
+      - ollama
+    volumes:
+      - app_temp:/app/temp
+      - app_uploads:/app/uploads
+      - app_logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - careerwise-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama_prod
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - careerwise-network
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+
+  # Nginx reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: careerwise_nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - careerwise-ai
+    restart: unless-stopped
+    networks:
+      - careerwise-network
+    profiles:
+      - with-nginx
+
+  # Redis for production caching
+  redis:
+    image: redis:7-alpine
+    container_name: careerwise_redis_prod
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - careerwise-network
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-defaultpassword}
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+volumes:
+  ollama_data:
+    driver: local
+  redis_data:
+    driver: local
+  app_temp:
+    driver: local
+  app_uploads:
+    driver: local
+  app_logs:
+    driver: local
+
+networks:
+  careerwise-network:
+    driver: bridge
